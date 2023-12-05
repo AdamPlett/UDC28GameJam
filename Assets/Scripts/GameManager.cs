@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     {
         if (player == null)
         {
-            playerInstance = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+            playerInstance = Instantiate(playerPrefab, new Vector3(0, 1, 0), Quaternion.identity);
             player = playerInstance.GetComponent<PlayerController>();
         }
     }

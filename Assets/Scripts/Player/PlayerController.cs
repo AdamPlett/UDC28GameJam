@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour
     public float interactRange;
     public LayerMask interactLayer;
 
+    [Header("PLayer Inventory")]
+    public Inventory inv;
+
     // Raycast Variables
     private Ray ray;
     private int numHits;

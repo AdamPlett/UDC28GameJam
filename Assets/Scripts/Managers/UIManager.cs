@@ -7,21 +7,11 @@ public class UIManager : MonoBehaviour
 
     public bool gamePaused;
 
+    public HUD hud;
+
     void Start()
     {
         DisableCursor();
-    }
-
-    public void EnableCursor()
-    {
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-    }
-
-    public void DisableCursor()
-    {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void ActivateUI(GameObject menu)
@@ -43,13 +33,27 @@ public class UIManager : MonoBehaviour
 
         if(gamePaused)
         {
-            //ActivatePauseMenu();
             EnableCursor();
         }
         else
         {
-            //DeactivatePauseMenu();
+
         }
     }
 
+    #region Cursor Functions
+
+    public void EnableCursor()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void DisableCursor()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    #endregion
 }

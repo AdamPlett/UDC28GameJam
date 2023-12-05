@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
         ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         numHits = Physics.RaycastNonAlloc(ray, rayResults, interactRange, interactLayer);
 
-        if(numHits > 0))
+        if(numHits > 0)
         {
             GameObject hitObj = rayResults[0].collider.gameObject;
             Interactable hitInteraction = hitObj.GetComponent<Interactable>();

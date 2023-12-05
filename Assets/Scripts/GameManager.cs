@@ -1,14 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager gm;
 
-    public Camera mainCamera;
+    [Header("Managers")]
     public UIManager ui;
     public AudioManager audio;
+
+    [Header("Player Variables")]
+    public PlayerController player;
+    public GameObject playerInstance, playerPrefab;
+
+    [Header("Camera Variables")]
+    public Camera mainCamera;
+    public CinemachineVirtualCamera vCam;
+
 
     public void Awake()
     {
@@ -19,6 +29,28 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(this);
+        }
+
+        InitPlayer();
+        InitCamera();
+    }
+
+    private void InitPlayer()
+    {
+        if (player == null)
+        {
+            playerInstance = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+            player = playerInstance.GetComponent<PlayerController>();
+        }
+    }
+
+    private void InitCamera()
+    {
+        vCam.transform.position = playerInstance.transform.position;
+        
+        if(vCam.Follow == null)
+        {
+            vCam.Follow = playerInstance.transform;
         }
     }
 }

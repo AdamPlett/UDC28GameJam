@@ -17,8 +17,8 @@ public class PlayerController : MonoBehaviour
 
     // Raycast Variables
     private Ray ray;
-    private RaycastHit[] rayResults;
     private int numHits;
+    private RaycastHit[] rayResults = new RaycastHit[1];
 
     // References
     private InputReader input;
@@ -47,6 +47,8 @@ public class PlayerController : MonoBehaviour
         ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         numHits = Physics.RaycastNonAlloc(ray, rayResults, interactRange, interactLayer);
 
+        Debug.Log("Interaction attempted; " + numHits);
+
         if(numHits > 0)
         {
             GameObject hitObj = rayResults[0].collider.gameObject;
@@ -56,6 +58,10 @@ public class PlayerController : MonoBehaviour
             {
                 hitInteraction.Interact();
                 Debug.Log("Interactable Detected: " + hitObj.name);
+            }
+            else
+            {
+                Debug.Log("No Interactable Detected");
             }
         }
     }

@@ -32,7 +32,6 @@ public class GameManager : MonoBehaviour
         }
 
         InitPlayer();
-        InitCamera();
     }
 
     private void InitPlayer()
@@ -42,6 +41,8 @@ public class GameManager : MonoBehaviour
             playerInstance = Instantiate(playerPrefab, this.transform);
             player = playerInstance.GetComponent<PlayerController>();
         }
+
+        InitCamera();
     }
 
     private void InitCamera()

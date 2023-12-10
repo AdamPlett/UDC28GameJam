@@ -1,4 +1,5 @@
 <<<<<<<< HEAD:Assets/Art/PolygonHorrorMansion/Scenes/Demo_01 1.unity.meta
+<<<<<<< Updated upstream
 fileFormatVersion: 2
 guid: f935a3dbdbcb83c4e9fdbce075b8c40c
 timeCreated: 1643941577
@@ -7,6 +8,16 @@ DefaultImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+=======
+fileFormatVersion: 2
+guid: f935a3dbdbcb83c4e9fdbce075b8c40c
+timeCreated: 1643941577
+licenseType: Free
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+>>>>>>> Stashed changes
 ========
 fileFormatVersion: 2
 guid: 2e04f7f58f844c44e8f8bfd9c5c342b7

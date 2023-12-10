@@ -1,21 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using static GameManager;
 
 public class PlayerController : MonoBehaviour
 {
     [Header("Player Movement")]
     public Vector3 playerVelocity;
+    public float crouchSpeed;
     public float moveSpeed;
     public float sprintSpeed;
     public float rotationDampFactor;
+
+    [Header("Noise Levels")]
+    public PlayerNoise playerNoise;
 
     [Header("Player Interaction")]
     public float interactRange;
     public LayerMask interactLayer;
 
-    [Header("PLayer Inventory")]
+    [Header("Player Inventory")]
     public Inventory inv;
 
     // Raycast Variables
@@ -33,6 +38,7 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<CharacterController>();
 
         input.interactPerformed += Interact;
+        input.crouchPerformed += Crouch;
     }
 
     void Update()
@@ -69,6 +75,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Crouch()
+    {
+        if(input.isCrouched)
+        {
+            controller.height = 0.5f;
+        }
+        else
+        {
+            controller.height = 1.5f;
+            controller.center = new Vector3(0, 0, 0);
+        }
+    }
+
     #region Movement Functions
 
     private void CalculateMoveDirection()
@@ -83,6 +102,12 @@ public class PlayerController : MonoBehaviour
             playerVelocity.x = moveDirection.x * sprintSpeed;
             playerVelocity.y = 0f;
             playerVelocity.z = moveDirection.z * sprintSpeed;
+        }
+        else if(input.isCrouched)
+        {
+            playerVelocity.x = moveDirection.x * crouchSpeed;
+            playerVelocity.y = 0f;
+            playerVelocity.z = moveDirection.z * crouchSpeed;
         }
         else
         {
@@ -104,9 +129,32 @@ public class PlayerController : MonoBehaviour
 
     private void MovePlayer()
     {
-        //controller.Move(new Vector3(playerVelocity.x, 0, playerVelocity.z) * Time.deltaTime);
-
         controller.SimpleMove(playerVelocity);
+
+        if (playerVelocity.x == 0 && playerVelocity.z == 0)
+        {
+            // Do Nothing
+        }
+        else
+        {
+            MakeNoise();
+        }
+    }
+
+    private void MakeNoise()
+    {
+        if (input.isSprinting)
+        {
+            gm.noise.CreateNoise(playerNoise.runLevel, transform.position);
+        }
+        else if (input.isCrouched)
+        {
+            gm.noise.CreateNoise(playerNoise.crouchLevel, transform.position);
+        }
+        else
+        {
+            gm.noise.CreateNoise(playerNoise.walkLevel, transform.position);
+        }
     }
 
     #endregion

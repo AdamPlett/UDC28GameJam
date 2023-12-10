@@ -10,9 +10,10 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     public Vector2 moveComposite;
 
     public Action interactPerformed;
+    public Action crouchPerformed;
     public Action pausePerformed;
 
-    public bool isSprinting;
+    public bool isSprinting, isCrouched;
 
     private Controls controls;
 
@@ -54,6 +55,15 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
         else if (context.canceled)
         {
             isSprinting = false;
+        }
+    }
+
+    public void OnCrouch(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            isCrouched = !isCrouched;
+            crouchPerformed?.Invoke();
         }
     }
 

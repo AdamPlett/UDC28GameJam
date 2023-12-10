@@ -10,14 +10,19 @@ public class GameManager : MonoBehaviour
     [Header("Managers")]
     public UIManager ui;
     public AudioManager audio;
+    public NoiseManager noise;
 
     [Header("Player Variables")]
     public PlayerController player;
     public GameObject playerInstance, playerPrefab;
 
+    [Header("Enemy Variables")]
+    public List<EnemyStateMachine> enemies;
+
     [Header("Camera Variables")]
     public Camera mainCamera;
     public CinemachineVirtualCamera vCam;
+    public CinemachineTransposer transposer;
 
 
     public void Awake()
@@ -48,6 +53,7 @@ public class GameManager : MonoBehaviour
     private void InitCamera()
     {
         vCam.transform.position = playerInstance.transform.position;
+        transposer = vCam.GetCinemachineComponent<CinemachineTransposer>();
         
         if(vCam.Follow == null)
         {

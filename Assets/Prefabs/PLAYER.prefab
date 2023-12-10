@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 1688776411305578510}
   - component: {fileID: 5333713223699977231}
   - component: {fileID: 1688776411305578496}
+  - component: {fileID: 8986133109997074358}
+  - component: {fileID: 7913347703968627940}
   m_Layer: 3
   m_Name: PLAYER
   m_TagString: Untagged
@@ -49,9 +51,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerVelocity: {x: 0, y: 0, z: 0}
-  moveSpeed: 5
-  sprintSpeed: 10
+  crouchSpeed: 2
+  moveSpeed: 4
+  sprintSpeed: 8
   rotationDampFactor: 1
+  playerNoise: {fileID: 7913347703968627940}
   interactRange: 5
   interactLayer:
     serializedVersion: 2
@@ -72,6 +76,7 @@ MonoBehaviour:
   mouseDelta: {x: 0, y: 0}
   moveComposite: {x: 0, y: 0}
   isSprinting: 0
+  isCrouched: 0
 --- !u!114 &5333713223699977231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,6 +111,43 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!195 &8986133109997074358
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688776411305578498}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &7913347703968627940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688776411305578498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 437d4250e554f014f98d8a8b24922500, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crouchLevel: 2
+  walkLevel: 15
+  runLevel: 25
 --- !u!1 &3809784863139840447
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,7 +240,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3809784863139840447}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.4
   m_Height: 1.75

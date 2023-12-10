@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using static GameManager;
 
-public enum eState { None, Patrolling, Searching, Chasing, Attacking, Wandering }
+public enum eState { None, Patrolling, Searching, Scouting, Attacking }
 
 public abstract class EnemyBaseState : State
 {

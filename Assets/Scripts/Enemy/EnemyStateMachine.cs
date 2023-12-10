@@ -13,18 +13,29 @@ public class EnemyStateMachine : StateMachine
     public float chaseSpeed;
 
     [Header("Detection")]
-    public float detection;
-    public float hearRadius;
-    public float seeRadius;
-    public Transform lastHeard;
+    [Range(0,100)] public float detection;
+    public float runHearRadius;
+    public float walkHearRadius;
+    public float crouchHearRadius;
+    public float killRadius;
+    public Noise lastHeard;
 
     [Header("Navigation")]
     public NavMeshAgent navAgent;
     public Transform[] patrolPoints;
 
+    [Header("Animation")]
+    public Animator enemyAnim;
+
     private void Start()
     {
         SwitchState(new EnemyPatrolState(this));
+    }
+
+    public void UpdateLastHeard(Noise newNoise)
+    {
+        lastHeard.DestroyNoise();
+        lastHeard = newNoise;
     }
 }
 =======

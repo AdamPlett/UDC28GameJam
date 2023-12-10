@@ -208,6 +208,7 @@ AnimatorStateMachine:
     m_State: {fileID: -7243021907533564889}
     m_Position: {x: 30, y: 270, z: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -427,6 +428,8 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: -7243021907533564889}
     m_Position: {x: 30, y: 270, z: 0}
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
   m_ChildStateMachines: []

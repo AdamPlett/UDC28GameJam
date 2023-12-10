@@ -28,6 +28,7 @@ public class EnemyStateMachine : StateMachine
     public Animator enemyAnim;
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     private void Start()
     {
         SwitchState(new EnemyPatrolState(this));
@@ -68,6 +69,8 @@ public class EnemyStateMachine : StateMachine
     [Header("Animation")]
     public Animator enemyAnim;
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     private void Start()

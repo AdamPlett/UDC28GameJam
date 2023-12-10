@@ -26,10 +26,7 @@ public class EnemyStateMachine : StateMachine
     [Header("Animation")]
     public Animator enemyAnim;
 
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
     private void Start()
     {
         SwitchState(new EnemyPatrolState(this));

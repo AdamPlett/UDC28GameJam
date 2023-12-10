@@ -12,7 +12,6 @@ public abstract class EnemyBaseState : State
 
     private int patrolIndex = 0;
 
-    private Transform targetLocation;
     private NavMeshAgent navAgent;
     private GameObject player;
 
@@ -26,26 +25,10 @@ public abstract class EnemyBaseState : State
         TravelToNextPoint();
     }
 
-    protected void CheckTargetDistance()
-    {
-        if(stateMachine.activeState == eState.Patrolling)
-        {
-            if (navAgent.remainingDistance < 1f)
-            {
-                TravelToNextPoint();
-            }
-        }
-    }
-
     protected void TravelToNextPoint()
     {
         patrolIndex = (patrolIndex + 1) % stateMachine.patrolPoints.Length;
         navAgent.SetDestination(stateMachine.patrolPoints[patrolIndex].position);
-    }
-
-    protected void TravelToSound(Transform soundTransform)
-    {
-        navAgent.SetDestination(soundTransform.position);
     }
 
     protected void Attack()

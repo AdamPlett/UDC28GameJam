@@ -9,11 +9,15 @@ public class EnemyPatrolState : EnemyBaseState
     public override void Enter()
     {
         stateMachine.activeState = eState.Patrolling;
+        stateMachine.enemyAnim.Play("Walk");
     }
 
     public override void Tick()
     {
-        CheckTargetDistance();
+        if (stateMachine.navAgent.remainingDistance < 1f)
+        {
+            TravelToNextPoint();
+        }
     }
 
     public override void Exit()

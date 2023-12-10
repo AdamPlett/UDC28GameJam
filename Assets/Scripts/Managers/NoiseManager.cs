@@ -21,6 +21,19 @@ public class NoiseManager : MonoBehaviour
             Destroy(latestNoise);
 
             latestNoise = Instantiate(noisePrefab, position, Quaternion.identity);
+            
+            if(gm.enemies[0].activeState != eState.Searching)
+            {
+                gm.enemies[0].SwitchState(new EnemySearchState(gm.enemies[0]));
+            }
+
+            if(gm.enemies[0].detection < 100f)
+            {
+                gm.enemies[0].detection += noiseLevel;
+            }
+
+            gm.enemies[0].navAgent.isStopped = false;
+            gm.enemies[0].TravelToSound(position);
         }
     }
 

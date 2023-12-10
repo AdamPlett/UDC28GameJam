@@ -97,17 +97,17 @@ public class PlayerController : MonoBehaviour
 
         Vector3 moveDirection = (cameraForward.normalized * input.moveComposite.y) + (cameraRight.normalized * input.moveComposite.x);
 
-        if (input.isSprinting)
-        {
-            playerVelocity.x = moveDirection.x * sprintSpeed;
-            playerVelocity.y = 0f;
-            playerVelocity.z = moveDirection.z * sprintSpeed;
-        }
-        else if(input.isCrouched)
+        if (input.isCrouched)
         {
             playerVelocity.x = moveDirection.x * crouchSpeed;
             playerVelocity.y = 0f;
             playerVelocity.z = moveDirection.z * crouchSpeed;
+        }
+        else if (input.isSprinting)
+        {
+            playerVelocity.x = moveDirection.x * sprintSpeed;
+            playerVelocity.y = 0f;
+            playerVelocity.z = moveDirection.z * sprintSpeed;
         }
         else
         {
